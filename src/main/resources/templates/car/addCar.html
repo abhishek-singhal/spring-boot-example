@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Welcome!</title>
+</head>
+<body>
+	<form th:action="@{/car/add/}+${customerId}" th:object="${car}" th:method="post">
+		Enter Car Name:
+		<input type="text" th:field="*{carName}" />
+		<span th:if="${#fields.hasErrors('carName')}" th:errors="*{carName}"></span>
+		<br />
+		Enter Model: 
+		<input type="text" th:field="*{model}" />
+		<span th:if="${#fields.hasErrors('model')}" th:errors="*{model}"></span>
+		<br />
+		<input type="submit" />
+	</form>
+</body>
+</html>

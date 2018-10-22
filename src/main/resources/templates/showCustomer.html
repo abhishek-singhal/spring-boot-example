@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Welcome!</title>
+</head>
+<body>
+	<h2>Customer Information</h2>
+	<table>
+		<tr>
+			<td>Id:</td>
+			<td th:text="${customer.id}"></td>
+		</tr>
+		<tr>
+			<td>Name:</td>
+			<td th:text="${customer.name}"></td>
+		</tr>
+		<tr>
+			<td>Email:</td>
+			<td th:text="${customer.email}"></td>
+		</tr>
+		<tr>
+			<td>Address:</td>
+			<td th:text="${customer.address}"></td>
+		</tr>
+	</table>
+	<br />
+	<h4>Options</h4>
+	<table>
+	
+		<tr>
+			<th>Customer Details</th>
+			<th>Car</th>
+		</tr>
+		<tr>
+			<td>
+				<a th:href="@{/customerDetail/update/}+${customer.id}"><button>Update Customer Details</button></a>
+			</td>
+			
+			<td>
+				<a th:href="@{/car/add/}+${customer.id}"><button>Add Cars</button></a>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<form th:if="${customer.customerDetail != null}" th:action="@{/customerDetail/delete/}+${customer.id}" th:method="DELETE">
+					<button type="submit">Delete Customer Details</button>
+				</form>
+			</td>
+			<td>
+				<form th:action="@{/customer/}+${customer.id}" th:method="GET">
+					<input type="submit" name="action" value="Show Cars">
+				</form>
+				<!-- <a th:href="@{/car/list/}+${customer.id}"><button>Show Cars</button></a> -->
+			</td>
+		</tr>
+		<tr>
+			<td th:if="${customer.customerDetail != null}">
+				<form th:action="@{/customer/}+${customer.id}" th:method="GET">
+					<input type="submit" name="action" value="Show Customer Details">
+				</form>
+			</td>
+		</tr>
+	</table>
+	<table th:if="${customerDetail}" border="1">
+		<tr>
+			<td>Spouse Name</td>
+			<td th:text="${customer.customerDetail.spouseName}"></td>
+		</tr>
+		<tr>
+			<td>Profession</td>
+			<td th:text="${customer.customerDetail.profession}"></td>
+		</tr>
+		<tr>
+			<td>Aadhaar</td>
+			<td th:text="${customer.customerDetail.aadhaar}"></td>
+		</tr>
+		<tr>
+			<td>DOB</td>
+			<td th:text="${customer.customerDetail.dob}"></td>
+		</tr>
+	</table>
+	<table th:if="${car}" border="1">
+		<tr>
+			<th>Car Name</th>
+			<th>Model</th>
+		</tr>
+		
+		<tr th:each="cars : ${carList}">
+			<td th:text="${cars.carName}"></td>
+			<td th:text="${cars.model}"></td>
+		</tr>
+	</table>
+	
+	<a th:href="@{/}">Go Back</a>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Welcome!</title>
+</head>
+<body>
+	<h2>Update Customer Detail</h2>
+	<form th:action="@{/customerDetail/update/}+${customerId}" th:object="${customerDetail}" th:method="POST">
+		<input type="hidden" th:field="*{id}" />
+		Enter Spouse Name:
+		<input type="text" th:field="*{spouseName}" />
+		<span th:if="${#fields.hasErrors('spouseName')}" th:errors="*{spouseName}"></span>
+		<br />
+		Enter Profession:
+		<input type="text" th:field="*{profession}" />
+		<span th:if="${#fields.hasErrors('profession')}" th:errors="*{profession}"></span>
+		<br />
+		Enter Aadhar: 
+		<input type="text" th:field="*{aadhaar}" />
+		<span th:if="${#fields.hasErrors('aadhaar')}" th:errors="*{aadhaar}"></span>
+		<br />
+		Enter Date of Birth(DD-MM-YYYY):
+		<input type="text" th:field="*{dob}" />
+		<span th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}"></span>
+		<br />
+		<input type="submit" />
+	</form>
+	
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Welcome!</title>
+</head>
+<body>
+	<h2>Update Customer</h2>
+	<form th:action="@{/customer/update} " th:object="${customer}" th:method="put">
+		<input type="hidden" th:field="*{id}" />
+		Name:
+		<input type="text" th:field="*{name}" />
+		<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+		<br />
+		Address:
+		<input type="text" th:field="*{address}" />
+		<span th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></span>
+		<br />
+		Email:
+		<input type="text" th:field="*{email}" />
+		<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+		<br />
+		<input type="submit" />
+	</form>
+</body>
+</html>

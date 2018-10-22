@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Welcome!</title>
+</head>
+<body>
+	<form th:action="@{/customer/create}" th:object="${customer}" method="post">
+		Enter Name:
+		<input type="text" th:field="*{name}" />
+		<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+		<br />
+		Enter Address: 
+		<input type="text" th:field="*{address}" />
+		<span th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></span>
+		<br />
+		Enter Email:
+		<input type="text" th:field="*{email}" />
+		<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+		<br />
+		<input type="submit" />
+	</form>
+</body>
+</html>
